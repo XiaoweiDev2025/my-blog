@@ -1,9 +1,9 @@
 export interface ArticleProps {
+    id:string;
     title:string;
     summary:string;
-    link:string;
-    date:string;
-    tags:string[];
-    coverImage:string;
-    author:string;
+    // date:string;
+    // tags:string[];
+    // coverImage:string;
+    // author:string;
 }
