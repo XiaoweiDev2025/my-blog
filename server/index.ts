@@ -1,14 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from './server/generated/prisma/index.js';
-const prisma = new PrismaClient();
+import { prisma } from "./server/prismaClient.js";
 import 'dotenv/config';
+import commentRoutes from './routes/comments.js';
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/articles", commentRoutes);
 
 app.get('/api/articles', async (req, res) => {
     const articles = await prisma.article.findMany();

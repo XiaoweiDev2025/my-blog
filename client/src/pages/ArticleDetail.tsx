@@ -7,6 +7,7 @@ import type {ArticleProps} from "../types/ArticleProps.ts";
 function ArticleDetail() {
     const currentUserRole = 'admin';
     const { id } = useParams();
+    const articleId = Number(id);
     const [article, setArticle] = useState<ArticleProps | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -58,7 +59,7 @@ function ArticleDetail() {
                 </div>
             )}
 
-            <CommentSection />
+            <CommentSection articleId={articleId} />
             <Footer />
         </div>
     );

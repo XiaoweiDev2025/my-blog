@@ -7,7 +7,7 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "NodeNext",
     "target": "esnext",
     "types": ["node"],
     // For nodejs:
@@ -16,11 +16,11 @@
     // and npm install -D @types/node
 
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
 
-    "rootDir": "./server",
-    "outDir": "./dist",
+    "rootDir": "./",
+    "outDir": "../dist",
 
     // Other Outputs
     "sourceMap": true,
@@ -47,5 +47,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "include": ["./**/*.ts"]
 }
