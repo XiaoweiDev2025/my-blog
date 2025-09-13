@@ -1,32 +1,21 @@
 import express from 'express';
 import cors from 'cors';
-import { prisma } from "./server/prismaClient.js";
 import 'dotenv/config';
+
+import articleRoutes from './routes/articles.js';
 import commentRoutes from './routes/comments.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/articles", commentRoutes);
 
-app.get('/api/articles', async (req, res) => {
-    const articles = await prisma.article.findMany();
-    res.json(articles);
-});
+app.use('/api/articles', articleRoutes);
+app.use('/api/comments', commentRoutes);
 
-app.get('/api/articles/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    const article = await prisma.article.findUnique({
-        where: { id },
-    });
-    if (article) {
-        res.json(article);
-    } else {
-        res.status(404).json({ message: 'Article not found' });
-    }
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);

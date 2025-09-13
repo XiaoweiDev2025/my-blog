@@ -1,5 +1,4 @@
 import { Navigate, useParams} from 'react-router-dom';
-import Footer from "../components/Footer.tsx";
 import CommentSection from "../components/CommentSection.tsx";
 import {useEffect, useState} from "react";
 import type {ArticleProps} from "../types/ArticleProps.ts";
@@ -40,8 +39,8 @@ function ArticleDetail() {
     return (
         <div className="max-w-screen-md mx-auto px-4 py-6">
             <header className="mb-4">
-                <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-                <p className="text-lg leading-relaxed">{article.summary}</p>
+                <h1 className="text-3xl font-bold mb-2">{article?.title}</h1>
+                <p className="text-lg leading-relaxed">{article?.summary}</p>
             </header>
 
             <main className="mb-6">
@@ -60,7 +59,6 @@ function ArticleDetail() {
             )}
 
             <CommentSection articleId={articleId} />
-            <Footer />
         </div>
     );
 

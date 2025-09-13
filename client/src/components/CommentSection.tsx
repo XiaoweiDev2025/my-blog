@@ -15,20 +15,27 @@ const CommentSection = ({ articleId }: { articleId: number }) => {
     const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
-        let alive = true;
+        const controller = new AbortController();
+        const { signal } = controller;
+
         (async () => {
             try {
-                const res = await fetch(`/api/articles/${articleId}/comments`);
+                const res = await fetch(`/api/articles/${articleId}/comments`, { signal });
                 if (!res.ok) throw new Error("Failed to load comments");
                 const data = await res.json();
-                if (alive) setComments(data);
-            } catch (e) {
-                console.error(e);
+                setComments(data);
+            } catch (err:unknown) {
+                if (err instanceof DOMException && err.name === 'AbortError') {
+                    return;
+                }
+                console.error(err);
             } finally {
-                if (alive) setLoading(false);
+                if (!signal.aborted) {
+                    setLoading(false);
+                }
             }
         })();
-        return () => { alive = false; };
+        return () => controller.abort();
     }, [articleId]);
 
     const onSubmit = async (e: React.FormEvent) => {

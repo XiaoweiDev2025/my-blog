@@ -10,7 +10,7 @@ function Home() {
     useEffect(() => {
         getArticles()
             .then(data => setArticles(data))
-            .catch(err => console.error("文章获取失败:", err));
+            .catch(err => console.error("Error fetching articles:", err));
     }, []);
 
     return (
@@ -26,10 +26,10 @@ function Home() {
                         <div className="space-y-4">
                             {articles.map((article) => (
                                 <ArticleCard
-                                    key={article.id}
-                                    id={article.id}
-                                    title={article.title}
-                                    summary={article.summary}
+                                    key={article?.id}
+                                    id={article?.id}
+                                    title={article?.title}
+                                    summary={article?.summary}
                                 />
                             ))}
                         </div>

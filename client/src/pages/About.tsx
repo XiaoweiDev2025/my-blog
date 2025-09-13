@@ -1,5 +1,3 @@
-import Footer from "../components/Footer.tsx";
-
 function About() {
     return (
         <div className="max-w-3xl mx-auto mt-10 px-4">
@@ -14,8 +12,6 @@ function About() {
             <p>
                 Thank you for visiting!
             </p>
-
-            <Footer />
         </div>
     );
 }

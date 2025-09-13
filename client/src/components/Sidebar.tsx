@@ -5,7 +5,7 @@ function Sidebar(){
         <div className="bg-gray-50 p-4 rounded shadow">
             <img
                 src={myPhoto}
-                alt="Xiaowei"
+                alt="Kaya Wu"
                 className="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-300"
             />
             <p className="text-lg font-semibold mb-2">👩‍💻 About me</p>
