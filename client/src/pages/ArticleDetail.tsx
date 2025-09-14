@@ -2,6 +2,8 @@ import { Navigate, useParams} from 'react-router-dom';
 import CommentSection from "../components/CommentSection.tsx";
 import {useEffect, useState} from "react";
 import type {ArticleProps} from "../types/ArticleProps.ts";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function ArticleDetail() {
     const currentUserRole = 'admin';
@@ -42,6 +44,14 @@ function ArticleDetail() {
                 <h1 className="text-3xl font-bold mb-2">{article?.title}</h1>
                 <p className="text-lg leading-relaxed">{article?.summary}</p>
             </header>
+
+            <main className="mb-6">
+                <div className="prose max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {article?.content ?? ""}
+                    </ReactMarkdown>
+                </div>
+            </main>
 
             <main className="mb-6">
                 <p className="text-gray-600">This is the full article content.</p>
