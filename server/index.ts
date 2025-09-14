@@ -3,7 +3,6 @@ import cors from 'cors';
 import 'dotenv/config';
 
 import articleRoutes from './routes/articles.js';
-import commentRoutes from './routes/comments.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 const app = express();
@@ -13,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/articles', articleRoutes);
-app.use('/api/comments', commentRoutes);
 
 app.use(errorHandler);
 

@@ -6,13 +6,16 @@ import {
     updateArticle,
     deleteArticle,
 } from '../api/article.js';
+import commentsRouter from './comments.js';
 
 const router = Router();
 
 router.get('/', getArticles);
 router.get('/:id', getArticleById);
-router.post('/', createArticle);        // Create
-router.put('/:id', updateArticle);      // Update（全量/幂等）
-router.delete('/:id', deleteArticle);   // Delete
+router.post('/', createArticle);
+router.put('/:id', updateArticle);
+router.delete('/:id', deleteArticle);
+
+router.use('/:articleId/comments', commentsRouter);
 
 export default router;

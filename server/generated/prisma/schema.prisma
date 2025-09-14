@@ -38,9 +38,11 @@ model Article {
 model Comment {
   id        Int      @id @default(autoincrement())
   articleId Int
-  author    String   @default("Anonymous")
-  body      String
+  author    String   @default("Anonymous") @db.VarChar(50)
+  body      String   @db.Text
   createdAt DateTime @default(now())
 
-  article Article @relation(fields: [articleId], references: [id])
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId, createdAt])
 }
