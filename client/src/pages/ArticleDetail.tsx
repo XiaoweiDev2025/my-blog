@@ -4,6 +4,9 @@ import {useEffect, useState} from "react";
 import type {ArticleProps} from "../types/ArticleProps.ts";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import ArticleAdminActions from "../components/ArticleAdminActions.tsx";
+import { articleContainer, articleTitle, articleLead, articleProse } from "../styles/articleStyles";
 
 function ArticleDetail() {
     const currentUserRole = 'admin';
@@ -39,39 +42,30 @@ function ArticleDetail() {
     }
 
     return (
-        <div className="max-w-screen-md mx-auto px-4 py-6">
+        <div className={articleContainer}>
             <header className="mb-4">
-                <h1 className="text-3xl font-bold mb-2">{article?.title}</h1>
-                <p className="text-lg leading-relaxed">{article?.summary}</p>
+                <h1 className={articleTitle}>{article.title}</h1>
+                <p className={articleLead}>{article.summary}</p>
             </header>
 
-            <main className="mb-6">
-                <div className="prose max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {article?.content ?? ""}
+            <main className="mb-8">
+                <div className={articleProse}>
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeRaw]}
+                        components={{
+                            h1: ({node, ...props}) => <h2 {...props} />,
+                        }}
+                    >
+                        {article.content ?? ""}
                     </ReactMarkdown>
                 </div>
             </main>
 
-            <main className="mb-6">
-                <p className="text-gray-600">This is the full article content.</p>
-            </main>
-
-            {currentUserRole === 'admin' && (
-                <div className="flex gap-2 mt-6">
-                    <button className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-                        Edit
-                    </button>
-                    <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
-                        Delete
-                    </button>
-                </div>
-            )}
-
+            <ArticleAdminActions id={article.id} role={currentUserRole} />
             <CommentSection articleId={articleId} />
         </div>
     );
-
 }
 
 export default ArticleDetail;

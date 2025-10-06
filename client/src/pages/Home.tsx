@@ -3,8 +3,10 @@ import Sidebar from "../components/Sidebar.tsx";
 import { getArticles } from "../api/getArticles";
 import {useEffect, useState} from "react";
 import type { ArticleProps } from "../types/ArticleProps";
+import NewArticleCTA from "../components/NewArticleCTA";
 
 function Home() {
+    const currentUserRole = "admin";
     const [articles, setArticles] = useState<ArticleProps[]>([]);
 
     useEffect(() => {
@@ -20,6 +22,8 @@ function Home() {
                     <h1 className="text-3xl font-bold text-center">Welcome to my blog！</h1>
                     <br />
                 </header>
+
+                <NewArticleCTA role={currentUserRole} className="mb-6" />
 
                 <main className="flex w-full">
                     <section className="flex-[7]">

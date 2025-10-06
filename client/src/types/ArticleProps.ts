@@ -3,8 +3,4 @@ export interface ArticleProps {
     title:string;
     summary:string;
     content: string;
-    // date:string;
-    // tags:string[];
-    // coverImage:string;
-    // author:string;
 }
