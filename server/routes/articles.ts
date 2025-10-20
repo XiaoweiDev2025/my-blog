@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { requireAuth } from "../middlewares/requireAuth.js";
 import {
     getArticles,
     getArticleById,
@@ -12,9 +13,9 @@ const router = Router();
 
 router.get('/', getArticles);
 router.get('/:id', getArticleById);
-router.post('/', createArticle);
-router.put('/:id', updateArticle);
-router.delete('/:id', deleteArticle);
+router.post('/', requireAuth, createArticle);
+router.put('/:id', requireAuth, updateArticle);
+router.delete('/:id', requireAuth, deleteArticle);
 
 router.use('/:articleId/comments', commentsRouter);
 

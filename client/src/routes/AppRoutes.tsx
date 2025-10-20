@@ -5,6 +5,7 @@ import ArticleDetail from "../pages/ArticleDetail";
 import NotFound from "../pages/NotFound";
 import Layout from "../Layout.tsx";
 import ArticleEditPage from "../pages/ArticleEditPage.tsx";
+import Login from "../pages/Login.tsx";
 
 function AppRoutes() {
     return (
@@ -16,6 +17,7 @@ function AppRoutes() {
                 <Route path="articles/:id" element={<ArticleDetail />} />
                 <Route path="*" element={<NotFound />} />
                 <Route path="/articles/:id/edit" element={<ArticleEditPage />} />
+                <Route path="/login" element={<Login/>} />
             </Route>
         </Routes>
     );

@@ -7,6 +7,7 @@ import {
     articleContainer, articleTitle, articleLead, articleProse,
     rbtn, bbtn, actionRow,
 } from "../styles/articleStyles";
+import { me } from "../api/auth";
 
 export default function ArticleEditPage() {
     const { id } = useParams<{ id?: string }>();
@@ -23,6 +24,26 @@ export default function ArticleEditPage() {
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [authorId, setAuthorId] = useState(1);
+
+    const [authChecked, setAuthChecked] = useState(false);
+    useEffect(() => {
+        (async () => {
+            try {
+                const m = await me();
+                if (!m.isAuth) {
+                    const target = isNew ? "/edit/new" : `/edit/${id}`;
+                    nav(`/login?redirect=${encodeURIComponent(target)}`, { replace: true });
+                    return;
+                }
+            } catch {
+                const target = isNew ? "/edit/new" : `/edit/${id}`;
+                nav(`/login?redirect=${encodeURIComponent(target)}`, { replace: true });
+                return;
+            } finally {
+                setAuthChecked(true);
+            }
+        })();
+    }, [id, isNew, nav]);
 
     useEffect(() => {
         if (isNew) return;
@@ -55,7 +76,7 @@ export default function ArticleEditPage() {
                 const created = await createArticle({ title, summary, content, authorId });
                 nav(`/articles/${created.id}`);
             } else {
-                await updateArticle(articleId!, { title, summary, content ,authorId });
+                await updateArticle(articleId!, { title, summary, content, authorId });
                 nav(`/articles/${articleId}`);
             }
         } catch (e: any) {
@@ -65,6 +86,7 @@ export default function ArticleEditPage() {
         }
     }
 
+    if (!authChecked) return <div className="p-6">Checking auth…</div>;
     if (loading) return <div className="p-6">Loading editor…</div>;
 
     return (
