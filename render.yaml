@@ -1,23 +1,16 @@
 services:
   - type: web
     name: my-blog-web
-    env: node
+    runtime: node
     plan: free
     region: frankfurt
     buildCommand: |
-      corepack enable
-      cd client && npm ci && npm run build && cd ..
-      cd server && npm ci
-      mkdir -p dist/client
-      cp -r ../client/dist/* dist/client/
-      npm run build
-      npx prisma generate --schema prisma/schema.prisma
-      npx prisma migrate deploy --schema prisma/schema.prisma
+      ./deploy.sh
     startCommand: |
       cd server && npm run start
     envVars:
       - key: NODE_VERSION
-        value: 20
+        value: "20"
       - key: CLIENT_ORIGIN
         value: https://my-blog-web.onrender.com
       - key: DATABASE_URL
