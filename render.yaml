@@ -8,13 +8,13 @@ services:
       corepack enable
       cd client && npm ci && npm run build && cd ..
       cd server && npm ci
-      mkdir -p server/dist/client
-      cp -r client/dist/* server/dist/client/
+      mkdir -p dist/client
+      cp -r ../client/dist/* dist/client/
       npm run build
-      npx prisma generate
-      npx prisma migrate deploy
+      npx prisma generate --schema prisma/schema.prisma
+      npx prisma migrate deploy --schema prisma/schema.prisma
     startCommand: |
-      cd server && node dist/index.js
+      cd server && npm run start
     envVars:
       - key: NODE_VERSION
         value: 20
