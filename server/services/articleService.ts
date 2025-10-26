@@ -1,6 +1,6 @@
 import { prisma } from '../prismaClient.js';
 import type { ArticleCreateDTO, ArticleUpdateDTO } from '../types/article.js';
-import { Prisma } from '../generated/prisma/index.js';
+import { isPrismaNotFoundError } from '../utils/prismaError.js';
 
 export async function list() {
     return prisma.article.findMany({ orderBy: { id: 'desc' } });
@@ -12,14 +12,8 @@ export async function getById(id: number) {
 
 export async function create(data: ArticleCreateDTO) {
     const { title, summary, content, authorId } = data;
-
     return prisma.article.create({
-        data: {
-            title,
-            summary,
-            content,
-            authorId, // Or：author: { connect: { id: authorId } }
-        },
+        data: { title, summary, content, authorId },
     });
 }
 
@@ -35,9 +29,7 @@ export async function update(id: number, data: ArticleUpdateDTO) {
             data: payload,
         });
     } catch (e) {
-        if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
-            return null;
-        }
+        if (isPrismaNotFoundError(e)) return null;
         throw e;
     }
 }
@@ -47,9 +39,7 @@ export async function remove(id: number) {
         await prisma.article.delete({ where: { id } });
         return true;
     } catch (e) {
-        if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
-            return false;
-        }
+        if (isPrismaNotFoundError(e)) return false;
         throw e;
     }
 }

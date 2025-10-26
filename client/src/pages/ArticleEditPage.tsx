@@ -23,7 +23,7 @@ export default function ArticleEditPage() {
     const [loading, setLoading] = useState(!isNew);
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [authorId, setAuthorId] = useState(1);
+    const [authorId] = useState(1);
 
     const [authChecked, setAuthChecked] = useState(false);
     useEffect(() => {

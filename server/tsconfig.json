@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
 
     "rootDir": "./",
-    "outDir": "../dist",
+    "outDir": "./dist",
 
     // Other Outputs
     "sourceMap": true,

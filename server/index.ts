@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 import 'dotenv/config';
 
 import articleRoutes from './routes/articles.js';
@@ -16,10 +17,20 @@ app.use(helmet());
 
 app.use(cookieParser());
 
-app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-}));
+const allowedOrigins = [
+    process.env.CORS_ORIGIN || '',
+    'http://localhost:5173',
+];
+app.use(
+    cors({
+        origin(origin, cb) {
+            if (!origin) return cb(null, true);
+            if (allowedOrigins.some(o => o && origin.startsWith(o))) return cb(null, true);
+            return cb(null, false);
+        },
+        credentials: true,
+    })
+);
 
 app.use(express.json());
 
@@ -37,8 +48,19 @@ app.use(session({
     },
 }));
 
+app.get('/api/health', (_req, res) => {
+    res.json({ ok: true, time: new Date().toISOString() });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/articles', articleRoutes);
+
+const clientDist = path.join(__dirname, 'client');
+app.use(express.static(clientDist));
+
+app.get('/{*all}', (_req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+});
 
 app.use(errorHandler);
 

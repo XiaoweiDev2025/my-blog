@@ -1,4 +1,11 @@
-export async function createArticle(payload: { title: string; summary: string; content: string }) {
+export interface ArticleCreatePayload {
+    title: string;
+    summary: string;
+    content: string;
+    authorId: number;
+}
+
+export async function createArticle(payload: ArticleCreatePayload) {
     const res = await fetch("/api/articles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

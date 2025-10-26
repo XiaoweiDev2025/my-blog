@@ -9,7 +9,10 @@
     "seed": "tsx seed.ts",
     "prisma:generate": "prisma generate --schema prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma",
-    "prisma:studio": "prisma studio --schema prisma/schema.prisma"
+    "prisma:studio": "prisma studio --schema prisma/schema.prisma",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "migrate:deploy": "prisma migrate deploy --schema prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
@@ -35,7 +38,7 @@
     "@types/express-session": "^1.18.2",
     "@types/node": "^24.2.0",
     "nodemon": "^3.1.10",
-    "prisma": "^6.13.0",
+    "prisma": "^6.18.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6",
     "typescript": "^5.9.2"

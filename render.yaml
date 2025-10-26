@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: my-blog-web
+    env: node
+    plan: free
+    region: frankfurt
+    buildCommand: |
+      corepack enable
+      cd client && npm ci && npm run build && cd ..
+      cd server && npm ci
+      mkdir -p server/dist/client
+      cp -r client/dist/* server/dist/client/
+      npm run build
+      npx prisma generate
+      npx prisma migrate deploy
+    startCommand: |
+      cd server && node dist/index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: CLIENT_ORIGIN
+        value: https://my-blog-web.onrender.com
+      - key: DATABASE_URL
+        sync: false
+
+databases:
+  - name: my-blog-db
+    plan: free
