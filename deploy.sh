@@ -16,7 +16,7 @@ cp -r ../client/dist/* dist/client/
 
 npx prisma generate --schema prisma/schema.prisma
 npx prisma migrate deploy --schema prisma/schema.prisma
-cd server
+pwd
 npm run build
 
 echo "Deploy script finished successfully"
