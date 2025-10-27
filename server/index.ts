@@ -60,10 +60,10 @@ app.use(express.static(clientDist));
 
 console.log(clientDist);
 
-app.get('/{*all}', (_req, res) => {
-    console.log(path.join(clientDist, 'index.html'));
-    res.sendFile(path.join(clientDist, 'index.html'));
-});
+// app.get('/{*all}', (_req, res) => {
+//     console.log(path.join(clientDist, 'index.html'));
+//     res.sendFile(path.join(clientDist, 'index.html'));
+// });
 
 app.use(errorHandler);
 
