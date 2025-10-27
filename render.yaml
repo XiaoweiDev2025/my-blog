@@ -7,7 +7,7 @@ services:
     buildCommand: |
       ./deploy.sh
     startCommand: |
-      pwd && cd server && npm run start
+      pwd && cd /opt/render/project/src/server && npm run start
     envVars:
       - key: NODE_VERSION
         value: "20"
