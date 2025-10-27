@@ -55,7 +55,7 @@ app.get('/api/health', (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/articles', articleRoutes);
 
-const clientDist = path.join(__dirname, 'client');
+const clientDist = path.join(process.cwd(), 'client');
 app.use(express.static(clientDist));
 
 console.log(clientDist);
