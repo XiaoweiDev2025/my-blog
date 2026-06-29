@@ -78,13 +78,13 @@ const CommentSection = ({ articleId }: { articleId: number }) => {
 
             <form className="mb-4" onSubmit={onSubmit}>
                 <input
-                    className="w-full border p-2 rounded mb-2"
+                    className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 p-2 rounded mb-2"
                     placeholder="Your name (optional)"
                     value={author}
                     onChange={e => setAuthor(e.target.value)}
                 />
                 <textarea
-                    className="w-full border p-2 rounded mb-2"
+                    className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 p-2 rounded mb-2"
                     placeholder="Leave a comment..."
                     rows={4}
                     value={body}
@@ -93,7 +93,7 @@ const CommentSection = ({ articleId }: { articleId: number }) => {
                 <button
                     type="submit"
                     disabled={submitting || !body.trim()}
-                    className="bg-blue-600 disabled:bg-gray-300 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    className="bg-blue-600 disabled:bg-gray-400 text-white px-4 py-2 rounded hover:bg-blue-700"
                 >
                     {submitting ? "Submitting..." : "Submit"}
                 </button>
@@ -106,9 +106,9 @@ const CommentSection = ({ articleId }: { articleId: number }) => {
             ) : (
                 <div className="space-y-4">
                     {comments.map(c => (
-                        <div key={c.id} className="border rounded p-3">
-                            <p className="text-sm text-gray-800 whitespace-pre-wrap">{c.body}</p>
-                            <p className="text-xs text-gray-500 mt-1">
+                        <div key={c.id} className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded p-3">
+                            <p className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{c.body}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                                 — {c.author} · {new Date(c.createdAt).toLocaleString()}
                             </p>
                         </div>

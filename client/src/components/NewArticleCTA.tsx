@@ -10,18 +10,18 @@ export default function NewArticleCTA({
     return (
         <div
             className={
-                `rounded-xl border border-dashed border-gray-300 bg-white shadow-sm ` +
+                `rounded-xl border border-dashed border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-sm ` +
                 `px-4 py-4 md:px-6 md:py-5 ${className ?? ""}`
             }
         >
             <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                    <div className="h-9 w-9 rounded-full border flex items-center justify-center">
+                    <div className="h-9 w-9 rounded-full border dark:border-gray-500 flex items-center justify-center text-gray-700 dark:text-gray-200">
                         <span aria-hidden>＋</span>
                     </div>
                     <div>
-                        <p className="font-medium">Create a new article</p>
-                        <p className="text-sm text-gray-500">
+                        <p className="font-medium text-gray-900 dark:text-gray-100">Create a new article</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
                             Write in Markdown (GFM supported)
                         </p>
                     </div>

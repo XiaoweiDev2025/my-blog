@@ -30,7 +30,7 @@ function Home() {
         <>
             <div className={"max-w-screen-xl mx-auto px-4"}>
                 <header>
-                    <h1 className="text-3xl font-bold text-center">Welcome to my blog！</h1>
+                    <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white">Welcome to my blog！</h1>
                     <br />
                 </header>
 
@@ -54,7 +54,7 @@ function Home() {
                                         />
                                     ))}
                                 </div>
-                                <hr className="my-6 border-gray-200" />
+                                <hr className="my-6 border-gray-200 dark:border-gray-700" />
                             </div>
                         )}
                         <div className="space-y-4">

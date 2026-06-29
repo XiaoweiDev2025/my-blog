@@ -113,7 +113,7 @@ export default function ArticleEditPage() {
             <section className="mb-6">
                 <div className={articleProse}>
           <textarea
-              className="w-full bg-white focus:outline-none border border-gray-200 rounded-md p-3 min-h-[18rem]"
+              className="w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 focus:outline-none rounded-md p-3 min-h-[18rem]"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your article in Markdown…"
