@@ -30,7 +30,7 @@ export default function Navbar() {
 
     return (
         <nav>
-            <div className="bg-pink-400 text-white max-w-screen-lg px-4 mx-auto py-3 border-b flex justify-between items-center">
+            <div className="bg-pink-400 dark:bg-pink-700 text-white max-w-screen-lg px-4 mx-auto py-3 border-b border-pink-300 dark:border-pink-800 flex justify-between items-center">
                 <h1 className="text-base md:text-xl font-bold shrink-0">Kaya Wu's Blog</h1>
 
                 <ul className="flex items-center space-x-2 md:space-x-4 text-sm md:text-base">

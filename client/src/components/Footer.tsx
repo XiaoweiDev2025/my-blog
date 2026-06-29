@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
-        <footer className="mt-8 text-center text-sm text-gray-500">
+        <footer className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
             <Link to="/" className="text-blue-600 hover:underline">
                 ← Back to Home
             </Link>

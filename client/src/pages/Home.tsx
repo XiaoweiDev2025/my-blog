@@ -38,6 +38,9 @@ function Home() {
                 <NewArticleCTA role={currentUserRole} className="mb-6" />
 
                 <main className="flex flex-col md:flex-row w-full gap-6">
+                    <aside className="block md:hidden">
+                        <Sidebar />
+                    </aside>
                     <section className="w-full md:flex-[7]">
                         {isAdmin && drafts.length > 0 && (
                             <div className="mb-8">
@@ -69,6 +72,7 @@ function Home() {
                     <aside className="hidden md:block md:flex-[3]">
                         <Sidebar />
                     </aside>
+
                 </main>
             </div>
         </>
