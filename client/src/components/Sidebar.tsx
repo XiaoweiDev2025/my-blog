@@ -10,7 +10,7 @@ function Sidebar(){
             />
             <p className="text-lg font-semibold mb-1">👩‍💻 Xiaowei(Kaya) Wu</p>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                MSc student @ University of Galway. Background in law & cybersecurity, now building things with code.
+                MSc in Software Design & Development @ University of Galway. Legal background, aspiring software engineer with interest in security & systems.
             </p>
             <div className="flex gap-4 text-sm">
                 <a
