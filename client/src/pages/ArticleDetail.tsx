@@ -1,4 +1,5 @@
 import { Navigate, useParams} from 'react-router-dom';
+import { me } from "../api/auth";
 import CommentSection from "../components/CommentSection.tsx";
 import {useEffect, useState} from "react";
 import type {ArticleProps} from "../types/ArticleProps.ts";
@@ -9,11 +10,11 @@ import ArticleAdminActions from "../components/ArticleAdminActions.tsx";
 import { articleContainer, articleTitle, articleLead, articleProse } from "../styles/articleStyles";
 
 function ArticleDetail() {
-    const currentUserRole = 'admin';
     const { id } = useParams();
     const articleId = Number(id);
     const [article, setArticle] = useState<ArticleProps | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         fetch(`/api/articles/${id}`)
@@ -31,6 +32,8 @@ function ArticleDetail() {
             .finally(() => {
                 setLoading(false);
             });
+
+        me().then(data => setIsAdmin(data.isAuth)).catch(() => {});
     }, [id]);
 
     if (loading) {
@@ -71,7 +74,7 @@ function ArticleDetail() {
                 </div>
             </main>
 
-            <ArticleAdminActions id={article.id} role={currentUserRole} />
+            <ArticleAdminActions id={article.id} role={isAdmin ? "admin" : undefined} />
             <CommentSection articleId={articleId} />
         </div>
     );

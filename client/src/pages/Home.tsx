@@ -7,7 +7,6 @@ import type { ArticleProps } from "../types/ArticleProps";
 import NewArticleCTA from "../components/NewArticleCTA";
 
 function Home() {
-    const currentUserRole = "admin";
     const [articles, setArticles] = useState<ArticleProps[]>([]);
     const [drafts, setDrafts] = useState<ArticleProps[]>([]);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -35,7 +34,7 @@ function Home() {
                     <br />
                 </header>
 
-                <NewArticleCTA role={currentUserRole} className="mb-6" />
+                <NewArticleCTA role={isAdmin ? "admin" : undefined} className="mb-6" />
 
                 <main className="flex flex-col md:flex-row w-full gap-6">
                     <aside className="block md:hidden">
