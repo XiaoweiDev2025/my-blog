@@ -23,7 +23,6 @@ export default function ArticleEditPage() {
     const [loading, setLoading] = useState(!isNew);
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [authorId] = useState(1);
 
     const [authChecked, setAuthChecked] = useState(false);
     useEffect(() => {
@@ -73,10 +72,10 @@ export default function ArticleEditPage() {
         setError(null);
         try {
             if (isNew) {
-                const created = await createArticle({ title, summary, content, authorId });
+                const created = await createArticle({ title, summary, content });
                 nav(`/articles/${created.id}`);
             } else {
-                await updateArticle(articleId!, { title, summary, content, authorId });
+                await updateArticle(articleId!, { title, summary, content });
                 nav(`/articles/${articleId}`);
             }
         } catch (e: any) {

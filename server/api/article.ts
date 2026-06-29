@@ -20,9 +20,13 @@ export const getArticleById = asyncHandler(async (req: Request, res: Response) =
 
 // POST /api/articles
 export const createArticle = asyncHandler(async (req, res) => {
-    const { title, summary, content, authorId } = req.body ?? {};
-    if (!title || !summary || !content || !authorId) {
-        return res.status(400).json({ message: 'title, summary, content, authorId are required' });
+    const { title, summary, content } = req.body ?? {};
+    const authorId = req.session.user?.id;
+    if (!title || !summary || !content) {
+        return res.status(400).json({ message: 'title, summary, content are required' });
+    }
+    if (!authorId) {
+        return res.status(401).json({ message: 'Unauthorized' });
     }
     const created = await articleService.create({ title, summary, content, authorId });
     res.status(201).json(created);

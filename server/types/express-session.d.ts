@@ -2,6 +2,6 @@ import "express-session";
 
 declare module "express-session" {
     interface SessionData {
-        user?: { username: string };
+        user?: { username: string; id: number };
     }
 }

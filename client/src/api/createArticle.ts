@@ -4,7 +4,6 @@ export interface ArticleCreatePayload {
     title: string;
     summary: string;
     content: string;
-    authorId: number;
 }
 
 export async function createArticle(payload: ArticleCreatePayload) {
