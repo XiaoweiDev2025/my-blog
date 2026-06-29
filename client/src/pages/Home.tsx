@@ -66,7 +66,7 @@ function Home() {
                             ))}
                         </div>
                     </section>
-                    <aside className="w-full md:flex-[3]">
+                    <aside className="hidden md:block md:flex-[3]">
                         <Sidebar />
                     </aside>
                 </main>

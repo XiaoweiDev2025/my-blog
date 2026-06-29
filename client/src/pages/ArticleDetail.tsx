@@ -57,7 +57,7 @@ function ArticleDetail() {
                             h1: (props) => <h2 className="text-2xl font-bold mt-8 mb-4" {...props} />,
                             h2: (props) => <h3 className="text-xl font-semibold mt-6 mb-3" {...props} />,
                             h3: (props) => <h4 className="text-lg font-medium mt-4 mb-2" {...props} />,
-                            p: (props) => <p className="mb-4 leading-7" {...props} />,
+                            p: (props) => <p className="mb-4 leading-7 md:leading-8 text-base md:text-lg" {...props} />,
                             ul: (props) => <ul className="list-disc list-inside mb-4" {...props} />,
                             ol: (props) => <ol className="list-decimal list-inside mb-4" {...props} />,
                             a: (props) => (

@@ -4,11 +4,10 @@ import type {ArticleProps} from "../types/ArticleProps"
 function ArticleCard(props:ArticleProps) {
     return (
             <div className="bg-white p-4 rounded shadow hover:shadow-md transition">
-                <Link to={`/articles/${props.id}`} className="text-xl font-bold text-blue-600 hover:underline">
+                <Link to={`/articles/${props.id}`} className="text-lg md:text-xl font-bold text-blue-600 hover:underline block mb-1">
                     {props.title}
                 </Link>
-                <br />
-                {props.summary}
+                <p className="text-sm md:text-base text-gray-600 line-clamp-2">{props.summary}</p>
             </div>
     )
 }
