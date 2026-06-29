@@ -4,23 +4,23 @@ function About() {
             <h1 className="text-3xl font-bold mb-6 text-pink-600 dark:text-pink-400">About Me</h1>
 
             <p className="mb-4 text-gray-800 dark:text-gray-200 leading-7">
-                Hi, I'm Xiaowei(Kaya) Wu — a software developer with a background in law and cybersecurity.
-                Before switching to tech, I spent several years as a practicing lawyer and legal advisor,
-                including work at Tencent where I translated GDPR and China PIPL requirements into
-                system-level data governance practices.
+                Hi, I'm Xiaowei (Kaya) Wu — a software developer with a legal background and a growing interest
+                in security and systems. Before switching to tech, I spent several years as a practicing lawyer
+                and legal advisor, working on data governance and regulatory compliance.
             </p>
 
             <p className="mb-4 text-gray-800 dark:text-gray-200 leading-7">
                 I'm currently completing an MSc in Software Design & Development at the University of Galway,
-                expected to graduate in September 2026. My coursework covers data structures, operating systems,
-                network security, cryptography, and machine learning.
+                expected to graduate in September 2026 with first class honours. My coursework covers data
+                structures, operating systems, network security, cryptography, and machine learning.
             </p>
 
             <p className="mb-4 text-gray-800 dark:text-gray-200 leading-7">
                 I'm currently focused on building solid software engineering fundamentals, with a longer-term
-                interest in security and systems. I've worked on projects like a vulnerability reachability
-                analysis framework for Java/Maven projects, and a KASLR entropy evaluation study on Linux kernels.
-                This blog is where I document what I'm learning, building, and figuring out along the way.
+                interest in security and systems. My main project is a vulnerability reachability analysis
+                framework for Java/Maven projects — determining whether CVE-reported vulnerabilities are
+                actually reachable in application code, with output structured to support regulatory compliance
+                workflows. This blog is where I document what I'm learning, building, and figuring out along the way.
             </p>
 
             <div className="mt-8 flex gap-6">
