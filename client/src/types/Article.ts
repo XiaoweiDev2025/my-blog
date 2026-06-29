@@ -4,6 +4,7 @@ export interface Article {
     summary: string;
     content: string;
     authorId: number;
+    published: boolean;
     createdAt: string;
     updatedAt: string;
 }

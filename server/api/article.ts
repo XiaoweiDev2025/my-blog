@@ -8,6 +8,12 @@ export const getArticles = asyncHandler(async (_req: Request, res: Response) => 
     res.status(200).json(list);
 });
 
+// GET /api/articles/drafts
+export const getDrafts = asyncHandler(async (_req: Request, res: Response) => {
+    const drafts = await articleService.listDrafts();
+    res.status(200).json(drafts);
+});
+
 // GET /api/articles/:id
 export const getArticleById = asyncHandler(async (req: Request, res: Response) => {
     const id = Number(req.params.id);
@@ -20,7 +26,7 @@ export const getArticleById = asyncHandler(async (req: Request, res: Response) =
 
 // POST /api/articles
 export const createArticle = asyncHandler(async (req, res) => {
-    const { title, summary, content } = req.body ?? {};
+    const { title, summary, content, published = true } = req.body ?? {};
     const authorId = req.session.user?.id;
     if (!title || !summary || !content) {
         return res.status(400).json({ message: 'title, summary, content are required' });
@@ -28,7 +34,7 @@ export const createArticle = asyncHandler(async (req, res) => {
     if (!authorId) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
-    const created = await articleService.create({ title, summary, content, authorId });
+    const created = await articleService.create({ title, summary, content, authorId, published });
     res.status(201).json(created);
 });
 
@@ -37,11 +43,11 @@ export const updateArticle = asyncHandler(async (req: Request, res: Response) =>
     const id = Number(req.params.id);
     if (Number.isNaN(id)) return res.status(400).json({ message: 'Invalid id' });
 
-    const { title, summary, content } = req.body ?? {};
-    if (!title && !summary && !content) {
+    const { title, summary, content, published } = req.body ?? {};
+    if (!title && !summary && !content && published === undefined) {
         return res.status(400).json({ message: 'No fields to update' });
     }
-    const updated = await articleService.update(id, { title, summary, content });
+    const updated = await articleService.update(id, { title, summary, content, published });
     if (!updated) return res.status(404).json({ message: 'Article not found' });
     res.status(200).json(updated);
 });

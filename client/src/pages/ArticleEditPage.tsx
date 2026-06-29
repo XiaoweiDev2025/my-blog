@@ -19,6 +19,7 @@ export default function ArticleEditPage() {
     const [title, setTitle] = useState("");
     const [summary, setSummary] = useState("");
     const [content, setContent] = useState("");
+    const [published, setPublished] = useState(false);
 
     const [loading, setLoading] = useState(!isNew);
     const [saving, setSaving] = useState(false);
@@ -58,6 +59,7 @@ export default function ArticleEditPage() {
                 setTitle(a.title ?? "");
                 setSummary(a.summary ?? "");
                 setContent(a.content ?? "");
+                setPublished(a.published ?? false);
             } catch (e: any) {
                 setError(e?.message ?? "Failed to load article");
             } finally {
@@ -67,16 +69,16 @@ export default function ArticleEditPage() {
         return () => { mounted = false; };
     }, [isNew, articleId, id]);
 
-    async function onSave() {
+    async function onSave(publish: boolean) {
         setSaving(true);
         setError(null);
         try {
             if (isNew) {
-                const created = await createArticle({ title, summary, content });
+                const created = await createArticle({ title, summary, content, published: publish });
                 nav(`/articles/${created.id}`);
             } else {
-                await updateArticle(articleId!, { title, summary, content });
-                nav(`/articles/${articleId}`);
+                await updateArticle(articleId!, { title, summary, content, published: publish });
+                nav(publish ? `/articles/${articleId}` : "/");
             }
         } catch (e: any) {
             setError(e?.message ?? "Failed to save article");
@@ -121,8 +123,11 @@ export default function ArticleEditPage() {
             </section>
 
             <div className={actionRow}>
-                <button onClick={onSave} disabled={saving} className={rbtn}>
-                    {saving ? "Submitting…" : (isNew ? "Create" : "Save")}
+                <button onClick={() => onSave(true)} disabled={saving} className={rbtn}>
+                    {saving ? "Submitting…" : (published ? "Save" : "Publish")}
+                </button>
+                <button onClick={() => onSave(false)} disabled={saving} className={bbtn}>
+                    Save as Draft
                 </button>
                 <button onClick={() => nav(-1)} className={bbtn}>Cancel</button>
             </div>

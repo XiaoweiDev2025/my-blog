@@ -5,7 +5,7 @@ export interface ArticleUpdatePayload {
     title?: string;
     summary?: string;
     content?: string;
-    authorId?: number;
+    published?: boolean;
 }
 
 export function updateArticle(id: number, data: ArticleUpdatePayload) {

@@ -4,3 +4,7 @@ import type { Article } from "../types/Article";
 export async function getArticles() {
     return request<Article[]>("/articles");
 }
+
+export async function getDrafts() {
+    return request<Article[]>("/articles/drafts");
+}

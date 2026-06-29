@@ -6,12 +6,14 @@ import {
     createArticle,
     updateArticle,
     deleteArticle,
+    getDrafts,
 } from '../api/article.js';
 import commentsRouter from './comments.js';
 
 const router = Router();
 
 router.get('/', getArticles);
+router.get('/drafts', requireAuth, getDrafts);
 router.get('/:id', getArticleById);
 router.post('/', requireAuth, createArticle);
 router.put('/:id', requireAuth, updateArticle);
