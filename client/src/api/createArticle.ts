@@ -1,3 +1,5 @@
+import { request } from "./client";
+
 export interface ArticleCreatePayload {
     title: string;
     summary: string;
@@ -6,11 +8,8 @@ export interface ArticleCreatePayload {
 }
 
 export async function createArticle(payload: ArticleCreatePayload) {
-    const res = await fetch("/api/articles", {
+    return request<{ id: number }>("/articles", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
     });
-    if (!res.ok) throw new Error("Failed to create article");
-    return res.json() as Promise<{ id: number }>;
 }
