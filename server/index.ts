@@ -13,6 +13,11 @@ import { errorHandler } from './middlewares/errorHandler.js';
 const app = express();
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
+if (!process.env.SESSION_SECRET) {
+    console.error('SESSION_SECRET is not set. Exiting.');
+    process.exit(1);
+}
+
 app.use(helmet());
 
 app.use(cookieParser());
@@ -37,7 +42,7 @@ app.use(express.json());
 app.set('trust proxy', 1);
 app.use(session({
     name: 'sid',
-    secret: process.env.SESSION_SECRET || 'fallback_secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
