@@ -4,7 +4,7 @@ function About() {
             <h1 className="text-3xl font-bold mb-6 text-pink-600 dark:text-pink-400">About Me</h1>
 
             <p className="mb-4 text-gray-800 dark:text-gray-200 leading-7">
-                Hi, I'm Xiaowei (Kaya) Wu — a software developer with a legal background and a growing interest
+                Hi, I'm Xiaowei (Kaya) Wu, a software developer with a legal background and a growing interest
                 in security and systems. Before switching to tech, I spent several years as a practicing lawyer
                 and legal advisor, working on data governance and regulatory compliance.
             </p>
@@ -18,7 +18,7 @@ function About() {
             <p className="mb-4 text-gray-800 dark:text-gray-200 leading-7">
                 I'm currently focused on building solid software engineering fundamentals, with a longer-term
                 interest in security and systems. My main project is a vulnerability reachability analysis
-                framework for Java/Maven projects — determining whether CVE-reported vulnerabilities are
+                framework for Java/Maven projects. It determines whether CVE-reported vulnerabilities are
                 actually reachable in application code, with output structured to support regulatory compliance
                 workflows. This blog is where I document what I'm learning, building, and figuring out along the way.
             </p>
