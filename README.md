@@ -17,13 +17,15 @@ A personal blog I built to write about tech and coding. Full-stack TypeScript wi
 ## Features
 
 - Write and publish posts in Markdown with syntax highlighting
+- Draft and publish workflow — save as draft or publish directly from the editor
 - Admin login to create, edit, and delete articles
-- Comment section on each article
-- Responsive design
+- Comment section on each article (no login required)
+- Responsive design, mobile-friendly
+- Dark mode support (follows system preference)
 
 ## How it works
 
-The frontend is a React SPA served statically by the Express server. The backend exposes a REST API under `/api`. Authentication is session-based — login stores a session cookie, and protected routes check the session before allowing writes.
+The frontend is a React SPA served statically by the Express server. The backend exposes a REST API under `/api`. Authentication is session-based. Login stores a session cookie, and protected routes check the session before allowing writes.
 
 Prisma handles all DB queries and migrations. On deployment, `prisma migrate deploy` runs automatically so the schema is always up to date.
 
@@ -54,11 +56,16 @@ The client runs on `http://localhost:5173` and the server on `http://localhost:3
 
 To generate a bcrypt hash for your admin password:
 ```bash
-cd server && npx tsx scripts/hash-password.ts
+cd server && npx tsx scripts/hash-password.ts yourpassword
 ```
 
 ## Deployment
 
-Deployed on Render using `render.yaml`. The config defines both the web service and the PostgreSQL database — Render automatically injects `DATABASE_URL` into the server environment.
+Deployed on Render using `render.yaml`. The config defines both the web service and the PostgreSQL database. Render automatically injects `DATABASE_URL` into the server environment.
 
 Push to `main` triggers an automatic redeploy.
+
+## Docs
+
+- [PROJECT_DOCS.md](PROJECT_DOCS.md) — architecture, API reference, database design, security measures, environment variables, and deployment pipeline
+- [BUGFIX_LOG.md](BUGFIX_LOG.md) — record of bugs found after deployment, with root cause analysis and fixes

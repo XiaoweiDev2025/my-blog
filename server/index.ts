@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -19,6 +20,9 @@ if (!process.env.SESSION_SECRET) {
 }
 
 app.use(helmet());
+
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
+app.use('/api', limiter);
 
 app.use(cookieParser());
 
